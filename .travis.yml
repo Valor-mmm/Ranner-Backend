@@ -1,11 +1,12 @@
 language: java
 dist: trusty
-
 addons:
   sonarcloud:
-    organization: "valor-mmm-github" # the key of the org you chose at step #3
+    organization: valor-mmm-github
     token:
-      secure: "QnbTVeQEEmUoYEM79PWB3PrYmtsb+WS6N8+XVnEkiCkjmZHCIHwhfAmdNuKvNjIhvaKgyWjNZu+Tq9C2PXQGhdtsaEPPCRbyQYqPAIodZNawgdrfU1mCdJTZobbsI0eJktIs6T6knfmCKD8gmK7reZ9Hr7vpPBToG2Lp+f0apffQQk49dxF0bpOwN2EsKCDGzbAeI5OQP+1B+JlLs5WtzjteQ8ZP34zvGFT/tV7igzn3dP3iaThNnlQaVFM+MZG4JX5yAV8pjxNH5R44GmpXB8GFxTP0a7TR69NsDROnGabHCIxrjVSClygeK4bSd6rU88i7QEbNX4k07yGsAj27o90gCvl1xF9JX4hruIgAvr4ntHyqxG9SNZDrGhPHswFh7wLimXpKAMZsaR59clj1Ja+KIPj+mnG5QBYXyY9vImRRKnGgbnpbG2oKtBYhbDns5it/4Kd/+uA+vENdLzglYR9lMMk1ETCx73CK3VOdQb/Jj6vVg1QFSuv0wWvVsI3E4tl9n0Ff+6Ya4mWASw9DfOzIeT6B8VYce4/OimDERhtD1X+jRQp3KccRsjDzzjk213K95iS2DaAkyMnZUu8b00AFNYP8g6QgpqodbYScKfhWf5MmFIgV6nJGG3+UQMv8OIO6R9Qe9gAdmgpGnBlt7P/zeYVA/ECiGSoxbGR9cnM=" # encrypted value of your token
+      secure: "$SONAR_TOKEN"
 script:
-  # other script steps might be done before running the actual analysis
-  - sonar-scanner
+- sonar-scanner
+env:
+  global:
+    secure: SvOxNPdVhwDlTQrQsFcfpS690OJgic1Svsk/8pfop4FfelyW4LDWPNKisiU+3Tnks9x7ksvA9nl5xh6OIyLLX75+hxGxjoTAC81GkhnNC1jSrLpt1QO900ZZ6cPegBtW/krO80QTHh+y6M2GFO4M/NfckB09dlvHAEVeFpp1aUc2UnLX5es1nF+A7enHdr3gBFJkc6gQiBwtNC/CJEMVGRyPUhsUoZXSSjlbr9d5R7tzvpaVUsx42L5qppr6gLCjBZRsO1phYf1cypktwL508z45PPW2Vl0dfwJ2sYLqEMsTo/NQ7Q6ShkCF6NZto4ODV7Z1ixw6Va90UczXgADT3eUmWq4wAIH0hRcVCN9O2zzTwjCqgFQovJ3tOmeNKkdRwfoR7u+AJWtRUUliAUa3aMM/ztLntydZ/1ie41TSfQIKl3XKUhojbhWHQ5pXw51sDHTqnK7X+GwxmLT9VknCCsqrL6iT6c/tKFXrFQig4xYIiexkoftD778ZnuytqxW/hy+plauyQMdWSo5SkHJijVdN0/F6ikXS3Ml83v8aZNlZyvBwBDDzeC9UEa6aAgL0YpizDRq9CAvHuQbOCwgjmVM2pAQAfTVtS9akGbihNCqiPPLsV1AyG5O/bLODsWC+go80Gosm0qvADPmQQamuYvg/P0BDkxaQVeeN77bQiT0=
