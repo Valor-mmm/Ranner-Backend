@@ -7,3 +7,11 @@
 plugins {
     id 'war'
 }
+
+sourceSets {
+    main {
+        java {
+            srcDirs = ["src"]
+        }
+    }
+}
