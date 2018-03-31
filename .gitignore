@@ -1,5 +1,7 @@
 .idea
 Ranner.iml
+Ranner.ipr
+Ranner.iws
 .gradle
 gradlew.bat
 build
