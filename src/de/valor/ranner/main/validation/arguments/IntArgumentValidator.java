@@ -1,42 +1,37 @@
 package de.valor.ranner.main.validation.arguments;
 
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
+
 public class IntArgumentValidator implements IArgumentValidator {
 
     private static final String type = "Integer";
 
-    private static final String typeError = "Given parameter is not of type: " + type;
-
-    private static final String notExistsError = "The given parameter is null or empty.";
+    private static final Logger logger = LogManager.getLogger(IntArgumentValidator.class);
 
     @Override
     public boolean validateExists(Object target) {
         boolean correctType = this.validateType(target);
-        return correctType && this.checkExists(target);
-    }
-
-    @Override
-    public boolean validateExistsStrict(Object target) {
-        boolean validType = this.validateTypeStrict(target);
-        return validType && this.checkExistsStrict(target);
-    }
-
-    @Override
-    public boolean validateType(Object target) {
-        boolean result = false;
-
-        if (target instanceof Integer) {
-            result = true;
-        }
-
+        boolean result = correctType && this.checkExists(target);
+        logger.info(ArgumentLogStringGenerator.getValidateExistResult(result));
         return result;
     }
 
     @Override
-    public boolean validateTypeStrict(Object target) {
+    public void validateExistsStrict(Object target) {
+        this.validateTypeStrict(target);
+        this.checkExistsStrict(target);
+    }
+
+    @Override
+    public boolean validateType(Object target) {
+        return target instanceof Integer;
+    }
+
+    @Override
+    public void validateTypeStrict(Object target) {
         boolean validType = this.validateType(target);
         this.throwTypeError(!validType);
-        return validType;
-
     }
 
     @Override
@@ -45,21 +40,20 @@ public class IntArgumentValidator implements IArgumentValidator {
     }
 
     @Override
-    public boolean checkExistsStrict(Object target) {
+    public void checkExistsStrict(Object target) {
         boolean doesExist = this.checkExists(target);
         this.throwNotExistsError(!doesExist);
-        return doesExist;
     }
 
     private void throwTypeError(boolean shouldThrow) {
         if (shouldThrow) {
-            throw new IllegalArgumentException(typeError);
+            throw new IllegalArgumentException(ArgumentLogStringGenerator.getTypeError(type));
         }
     }
 
     private void throwNotExistsError(boolean shouldThrow) {
         if (shouldThrow) {
-            throw new IllegalArgumentException(notExistsError);
+            throw new IllegalArgumentException(ArgumentLogStringGenerator.getNotExistsError());
         }
     }
 

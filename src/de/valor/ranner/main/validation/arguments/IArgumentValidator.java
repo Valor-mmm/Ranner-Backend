@@ -4,14 +4,14 @@ public interface IArgumentValidator {
 
     boolean validateExists(Object target);
 
-    boolean validateExistsStrict(Object target);
+    void validateExistsStrict(Object target);
 
     boolean validateType(Object target);
 
-    boolean validateTypeStrict(Object target);
+    void validateTypeStrict(Object target);
 
     boolean checkExists(Object target);
 
-    boolean checkExistsStrict(Object target);
+    void checkExistsStrict(Object target);
 
 }
