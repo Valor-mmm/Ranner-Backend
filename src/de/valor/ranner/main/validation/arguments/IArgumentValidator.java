@@ -2,9 +2,17 @@ package de.valor.ranner.main.validation.arguments;
 
 public interface IArgumentValidator {
 
-    boolean validateExists(Object target);
+    default boolean validateExists(Object target) {
+        boolean correctType = this.validateType(target);
+        boolean result = correctType && this.checkExists(target);
+        logValidationResult(result);
+        return result;
+    }
 
-    void validateExistsStrict(Object target);
+    default void validateExistsStrict(Object target) {
+        validateTypeStrict(target);
+        checkExistsStrict(target);
+    }
 
     boolean validateType(Object target);
 
@@ -13,5 +21,7 @@ public interface IArgumentValidator {
     boolean checkExists(Object target);
 
     void checkExistsStrict(Object target);
+
+    void logValidationResult(boolean result);
 
 }

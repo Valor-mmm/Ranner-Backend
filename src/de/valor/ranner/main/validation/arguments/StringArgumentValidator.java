@@ -10,20 +10,6 @@ public class StringArgumentValidator implements IArgumentValidator {
     private static final Logger logger = LogManager.getLogger(StringArgumentValidator.class);
 
     @Override
-    public boolean validateExists(Object target) {
-        boolean result = this.validateType(target);
-        result = result && this.checkExists(target);
-        logger.info(ArgumentLogStringGenerator.getValidateExistResult(result));
-        return result;
-    }
-
-    @Override
-    public void validateExistsStrict(Object target) {
-        this.validateTypeStrict(target);
-        this.checkExistsStrict(target);
-    }
-
-    @Override
     public boolean validateType(Object target) {
         return target instanceof String;
     }
@@ -47,6 +33,11 @@ public class StringArgumentValidator implements IArgumentValidator {
         this.isNullStrict(target);
         this.validateTypeStrict(target);
         this.isEmptyStrict(target);
+    }
+
+    @Override
+    public void logValidationResult(boolean result) {
+        logger.info(ArgumentLogStringGenerator.getValidateExistResult(result));
     }
 
     private void isNullStrict(Object target) {
