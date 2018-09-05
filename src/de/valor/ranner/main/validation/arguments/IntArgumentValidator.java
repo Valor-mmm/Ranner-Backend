@@ -10,41 +10,51 @@ public class IntArgumentValidator implements IArgumentValidator {
     private static final Logger logger = LogManager.getLogger(IntArgumentValidator.class);
 
     @Override
-    public boolean validateType(Object target) {
-        return target instanceof Integer;
+    public boolean validateType(Object target, String argumentName) {
+        boolean result = target instanceof Integer;
+        if (!result) {
+            String logMsg = ArgumentLogStringGenerator.getTypeError(type, argumentName);
+            logger.info(logMsg);
+        }
+        return result;
     }
 
     @Override
-    public void validateTypeStrict(Object target) {
-        boolean validType = this.validateType(target);
-        this.throwTypeError(!validType);
+    public void validateTypeStrict(Object target, String argumentName) {
+        boolean validType = this.validateType(target, argumentName);
+        this.throwTypeError(!validType, argumentName);
     }
 
     @Override
-    public boolean checkExists(Object target) {
-        return target == null;
+    public boolean checkExists(Object target, String argumentName) {
+        boolean result = target == null;
+        if (!result) {
+            String msg = ArgumentLogStringGenerator.getExistsError(argumentName);
+            logger.info(msg);
+        }
+        return result;
     }
 
     @Override
-    public void checkExistsStrict(Object target) {
-        boolean doesExist = this.checkExists(target);
-        this.throwNotExistsError(!doesExist);
+    public void checkExistsStrict(Object target, String argumentName) {
+        boolean doesExist = this.checkExists(target, argumentName);
+        this.throwNotExistsError(!doesExist, argumentName);
     }
 
     @Override
-    public void logValidationResult(boolean result) {
-        logger.info(ArgumentLogStringGenerator.getValidateExistResult(result));
+    public void logValidationResult(boolean result, String argumentName) {
+        logger.info(ArgumentLogStringGenerator.getValidateExistResult(result, argumentName));
     }
 
-    private void throwTypeError(boolean shouldThrow) {
+    private void throwTypeError(boolean shouldThrow, String argumentName) {
         if (shouldThrow) {
-            throw new IllegalArgumentException(ArgumentLogStringGenerator.getTypeError(type));
+            throw new IllegalArgumentException(ArgumentLogStringGenerator.getTypeError(type, argumentName));
         }
     }
 
-    private void throwNotExistsError(boolean shouldThrow) {
+    private void throwNotExistsError(boolean shouldThrow, String argumentName) {
         if (shouldThrow) {
-            throw new IllegalArgumentException(ArgumentLogStringGenerator.getNotExistsError());
+            throw new IllegalArgumentException(ArgumentLogStringGenerator.getNotExistsError(argumentName));
         }
     }
 
