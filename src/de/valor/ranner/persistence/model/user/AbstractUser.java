@@ -1,10 +1,11 @@
-package de.valor.ranner.persistance.model.user;
+package de.valor.ranner.persistence.model.user;
 
-import de.valor.ranner.persistance.model.privileges.Privilege;
+import de.valor.ranner.persistence.model.AbstractEntity;
+import de.valor.ranner.persistence.model.privileges.Privilege;
 
 import java.util.List;
 
-public class AbstractUser {
+public abstract class AbstractUser extends AbstractEntity {
 
     private String firstName;
 

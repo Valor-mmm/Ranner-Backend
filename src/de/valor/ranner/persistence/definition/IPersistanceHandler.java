@@ -1,4 +1,4 @@
-package de.valor.ranner.persistance.definition;
+package de.valor.ranner.persistence.definition;
 
 public interface IPersistanceHandler<T> {
 
