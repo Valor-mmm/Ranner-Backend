@@ -19,7 +19,7 @@ public class NotNullArgumentValidator implements IArgumentValidator {
 
     @Override
     public boolean checkExists(Object target, String argumentName) {
-        boolean result = target == null;
+        boolean result = !(target == null);
         if (!result) {
             String logMsg = ArgumentLogStringGenerator.getExistsError(argumentName);
             logger.info(logMsg);

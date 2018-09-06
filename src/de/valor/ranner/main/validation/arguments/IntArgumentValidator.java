@@ -27,7 +27,7 @@ public class IntArgumentValidator implements IArgumentValidator {
 
     @Override
     public boolean checkExists(Object target, String argumentName) {
-        boolean result = target == null;
+        boolean result = !(target == null);
         if (!result) {
             String msg = ArgumentLogStringGenerator.getExistsError(argumentName);
             logger.info(msg);

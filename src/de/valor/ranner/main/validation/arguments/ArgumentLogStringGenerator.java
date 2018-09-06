@@ -5,28 +5,28 @@ package de.valor.ranner.main.validation.arguments;
  */
 public class ArgumentLogStringGenerator {
 
-    private static final String typeError = "Given parameter is not of type: ";
-    private static final String typeErrorTemplate = "Given parameter \"%s\" is not of type: ";
+    private static final String typeError = "Given argument is not of type: ";
+    private static final String typeErrorTemplate = "Given argument \"%s\" is not of type: ";
 
 
-    private static final String notExistsError = "The given parameter is null or empty.";
-    private static final String notExistsErrorTemplate = "The given parameter \"%s\" is null or empty.";
+    private static final String notExistsError = "The given argument is null or empty.";
+    private static final String notExistsErrorTemplate = "The given argument \"%s\" is null or empty.";
 
-    private static final String nullError = "The given parameter is null.";
-    private static final String nullErrorTemplate = "The given parameter \"%s\" is null.";
+    private static final String nullError = "The given argument is null.";
+    private static final String nullErrorTemplate = "The given argument \"%s\" is null.";
 
-    private static final String emptyError = "The given parameter is empty.";
-    private static final String emptyErrorTemplate = "The given parameter is \"%s\" empty.";
+    private static final String emptyError = "The given argument is empty.";
+    private static final String emptyErrorTemplate = "The given argument is \"%s\" empty.";
 
-    private static final String existsError = "The given parameter does not exist.";
-    private static final String existsErrorTemplate = "The given parameter \"%s\"does not exist.";
+    private static final String existsError = "The given argument does not exist.";
+    private static final String existsErrorTemplate = "The given argument \"%s\"does not exist.";
 
-    private static final String validateExistResultPositive = "The given parameter does exist and is a valid type.";
-    private static final String validateExistResultPositiveTemplate = "The given parameter \"%s\" does exist and is a valid type.";
+    private static final String validateExistResultPositive = "The given argument does exist and is a valid type.";
+    private static final String validateExistResultPositiveTemplate = "The given argument \"%s\" does exist and is a valid type.";
 
 
-    private static final String validateExistResultNegative = "The given parameter does not exist or is not a valid type!";
-    private static final String validateExistResultNegativeTemplate = "The given parameter \"%s\" does not exist or is not a valid type!";
+    private static final String validateExistResultNegative = "The given argument does not exist or is not a valid type!";
+    private static final String validateExistResultNegativeTemplate = "The given argument \"%s\" does not exist or is not a valid type!";
 
 
     public static String getTypeError(String type, String argumentName) {
