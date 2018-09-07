@@ -1,4 +1,4 @@
 #!/usr/bin/env bash
 
-./gradlew.sh clean test
+./gradlew clean test
 sonar-scanner
