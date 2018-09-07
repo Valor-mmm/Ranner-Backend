@@ -18,12 +18,8 @@ public class ArgumentLogStringGenerator {
     private static final String emptyError = "The given argument is empty.";
     private static final String emptyErrorTemplate = "The given argument is \"%s\" empty.";
 
-    private static final String existsError = "The given argument does not exist.";
-    private static final String existsErrorTemplate = "The given argument \"%s\"does not exist.";
-
     private static final String validateExistResultPositive = "The given argument does exist and is a valid type.";
     private static final String validateExistResultPositiveTemplate = "The given argument \"%s\" does exist and is a valid type.";
-
 
     private static final String validateExistResultNegative = "The given argument does not exist or is not a valid type!";
     private static final String validateExistResultNegativeTemplate = "The given argument \"%s\" does not exist or is not a valid type!";
@@ -43,10 +39,6 @@ public class ArgumentLogStringGenerator {
 
     public static String getEmptyError(String argumentName) {
         return composeValidationResult(emptyError, emptyErrorTemplate, argumentName);
-    }
-
-    public static String getExistsError(String argumentName) {
-        return composeValidationResult(existsError, existsErrorTemplate, argumentName);
     }
 
     public static String getValidateExistResult(boolean valid, String argumentName) {

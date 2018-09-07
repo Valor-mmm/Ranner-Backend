@@ -21,7 +21,7 @@ public class NotNullArgumentValidator implements IArgumentValidator {
     public boolean checkExists(Object target, String argumentName) {
         boolean result = !(target == null);
         if (!result) {
-            String logMsg = ArgumentLogStringGenerator.getExistsError(argumentName);
+            String logMsg = ArgumentLogStringGenerator.getNotExistsError(argumentName);
             logger.info(logMsg);
         }
         return result;

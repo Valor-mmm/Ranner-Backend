@@ -29,7 +29,7 @@ public class IntArgumentValidator implements IArgumentValidator {
     public boolean checkExists(Object target, String argumentName) {
         boolean result = !(target == null);
         if (!result) {
-            String msg = ArgumentLogStringGenerator.getExistsError(argumentName);
+            String msg = ArgumentLogStringGenerator.getNotExistsError(argumentName);
             logger.info(msg);
         }
         return result;
