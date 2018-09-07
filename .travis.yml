@@ -1,6 +1,8 @@
 sudo: true
 language: java
 dist: trusty
+before_install:
+- chmod +x ./travis_run_sonarscanner.sh
 addons:
   sonarcloud:
     organization: valor-mmm-github
