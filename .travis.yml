@@ -6,9 +6,13 @@ addons:
     organization: valor-mmm-github
     token:
       secure: "$SONAR_TOKEN"
-script:
-- ./gradlew clean test
-- sonar-scanner
+jobs:
+  include:
+  - stage: test
+    name: "Gradle Tests"
+    script: ./gradlew clean test
+  - script: sonar-scanner
+    name: "Sonar Scanner"
 env:
   global:
     secure: SvOxNPdVhwDlTQrQsFcfpS690OJgic1Svsk/8pfop4FfelyW4LDWPNKisiU+3Tnks9x7ksvA9nl5xh6OIyLLX75+hxGxjoTAC81GkhnNC1jSrLpt1QO900ZZ6cPegBtW/krO80QTHh+y6M2GFO4M/NfckB09dlvHAEVeFpp1aUc2UnLX5es1nF+A7enHdr3gBFJkc6gQiBwtNC/CJEMVGRyPUhsUoZXSSjlbr9d5R7tzvpaVUsx42L5qppr6gLCjBZRsO1phYf1cypktwL508z45PPW2Vl0dfwJ2sYLqEMsTo/NQ7Q6ShkCF6NZto4ODV7Z1ixw6Va90UczXgADT3eUmWq4wAIH0hRcVCN9O2zzTwjCqgFQovJ3tOmeNKkdRwfoR7u+AJWtRUUliAUa3aMM/ztLntydZ/1ie41TSfQIKl3XKUhojbhWHQ5pXw51sDHTqnK7X+GwxmLT9VknCCsqrL6iT6c/tKFXrFQig4xYIiexkoftD778ZnuytqxW/hy+plauyQMdWSo5SkHJijVdN0/F6ikXS3Ml83v8aZNlZyvBwBDDzeC9UEa6aAgL0YpizDRq9CAvHuQbOCwgjmVM2pAQAfTVtS9akGbihNCqiPPLsV1AyG5O/bLODsWC+go80Gosm0qvADPmQQamuYvg/P0BDkxaQVeeN77bQiT0=
