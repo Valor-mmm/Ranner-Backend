@@ -8,7 +8,6 @@ public class ArgumentLogStringGenerator {
     private static final String typeError = "Given argument is not of type: ";
     private static final String typeErrorTemplate = "Given argument \"%s\" is not of type: ";
 
-
     private static final String notExistsError = "The given argument is null or empty.";
     private static final String notExistsErrorTemplate = "The given argument \"%s\" is null or empty.";
 
@@ -16,7 +15,7 @@ public class ArgumentLogStringGenerator {
     private static final String nullErrorTemplate = "The given argument \"%s\" is null.";
 
     private static final String emptyError = "The given argument is empty.";
-    private static final String emptyErrorTemplate = "The given argument is \"%s\" empty.";
+    private static final String emptyErrorTemplate = "The given argument \"%s\" is empty.";
 
     private static final String validateExistResultPositive = "The given argument does exist and is a valid type.";
     private static final String validateExistResultPositiveTemplate = "The given argument \"%s\" does exist and is a valid type.";
@@ -53,7 +52,7 @@ public class ArgumentLogStringGenerator {
 
     private static String composeValidationResult(String defaultValue, String template, String argumentName) {
         String result = defaultValue;
-        if (argumentName != null && argumentName.isEmpty()) {
+        if (argumentName != null && !argumentName.isEmpty()) {
             result = String.format(template, argumentName);
         }
         return result;
