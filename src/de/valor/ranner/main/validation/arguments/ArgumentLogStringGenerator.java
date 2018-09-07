@@ -46,7 +46,7 @@ public class ArgumentLogStringGenerator {
     }
 
     public static String getExistsError(String argumentName) {
-        return composeValidationResult(existsError, notExistsErrorTemplate, argumentName);
+        return composeValidationResult(existsError, existsErrorTemplate, argumentName);
     }
 
     public static String getValidateExistResult(boolean valid, String argumentName) {
