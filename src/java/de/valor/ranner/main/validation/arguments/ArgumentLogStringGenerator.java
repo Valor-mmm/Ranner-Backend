@@ -52,7 +52,7 @@ class ArgumentLogStringGenerator {
 
     private static String composeValidationResult(String defaultValue, String template, String argumentName) {
         String result = defaultValue;
-        if (argumentName != null && !argumentName.isEmpty()) {
+        if (argumentName != null) {
             result = String.format(template, argumentName);
         }
         return result;

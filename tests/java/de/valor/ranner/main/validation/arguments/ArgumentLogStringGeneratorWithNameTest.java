@@ -43,8 +43,8 @@ class ArgumentLogStringGeneratorWithNameTest {
 
     @Test
     void getValidateExistResultFalse() {
-        String expected = "The given argument \"freakyParameter\" does not exist or is not a valid type!";
-        String actual = ArgumentLogStringGenerator.getValidateExistResult(false, "freakyParameter");
+        String expected = "The given argument \"\" does not exist or is not a valid type!";
+        String actual = ArgumentLogStringGenerator.getValidateExistResult(false, "");
         assertEquals(expected, actual);
     }
 }
