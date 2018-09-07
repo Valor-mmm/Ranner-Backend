@@ -10,6 +10,7 @@ plugins {
     id 'idea'
     id 'java'
     id 'war'
+    id 'jacoco'
     id 'io.spring.dependency-management' version '1.0.1.RELEASE'
 }
 
@@ -58,3 +59,14 @@ sourceSets {
 test {
     useJUnitPlatform()
 }
+
+jacocoTestReport {
+    reports {
+        xml.enabled true
+        csv.enabled false
+        html.destination file("${buildDir}/jacoco/jacocoHtml")
+        xml.destination file("${buildDir}/jacoco/jacocoXml")
+    }
+}
+
+

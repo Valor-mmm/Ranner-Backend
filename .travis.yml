@@ -11,7 +11,7 @@ jobs:
   - stage: test
     name: "Gradle Tests"
     script: ./gradlew clean test
-  - script: sonar-scanner
+  - script: ./travis_run_sonarscanner.sh
     name: "Sonar Scanner"
 env:
   global:
