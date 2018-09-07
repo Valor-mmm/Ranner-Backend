@@ -3,7 +3,7 @@ package de.valor.ranner.main.validation.arguments;
 /**
  * Class can not use IArgumentValidators due to imminent endless recursions
  */
-public class ArgumentLogStringGenerator {
+class ArgumentLogStringGenerator {
 
     private static final String typeError = "Given argument is not of type: ";
     private static final String typeErrorTemplate = "Given argument \"%s\" is not of type: ";
@@ -24,23 +24,23 @@ public class ArgumentLogStringGenerator {
     private static final String validateExistResultNegativeTemplate = "The given argument \"%s\" does not exist or is not a valid type!";
 
 
-    public static String getTypeError(String type, String argumentName) {
+    static String getTypeError(String type, String argumentName) {
         return composeValidationResult(typeError, typeErrorTemplate, argumentName) + type;
     }
 
-    public static String getNotExistsError(String argumentName) {
+    static String getNotExistsError(String argumentName) {
         return composeValidationResult(notExistsError, notExistsErrorTemplate, argumentName);
     }
 
-    public static String getNullError(String argumentName) {
+    static String getNullError(String argumentName) {
         return composeValidationResult(nullError, nullErrorTemplate, argumentName);
     }
 
-    public static String getEmptyError(String argumentName) {
+    static String getEmptyError(String argumentName) {
         return composeValidationResult(emptyError, emptyErrorTemplate, argumentName);
     }
 
-    public static String getValidateExistResult(boolean valid, String argumentName) {
+    static String getValidateExistResult(boolean valid, String argumentName) {
         String result;
         if (valid) {
             result = composeValidationResult(validateExistResultPositive, validateExistResultPositiveTemplate, argumentName);
