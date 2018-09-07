@@ -28,16 +28,33 @@ dependencies {
     implementation 'net.ravendb:ravendb:4.1.0'
     implementation group: 'org.apache.logging.log4j', name: 'log4j-api', version: '2.11.1'
     implementation group: 'org.apache.logging.log4j', name: 'log4j-core', version: '2.11.1'
+    testImplementation(
+            'org.junit.jupiter:junit-jupiter-api:5.1.0'
+    )
+    testRuntimeOnly(
+            'org.junit.jupiter:junit-jupiter-engine:5.1.0'
+    )
 }
-
 
 sourceSets {
     main {
         java {
-            srcDirs = ["src"]
+            srcDirs = ["src/java"]
         }
         resources {
-            srcDirs = ["resources"]
+            srcDirs = ["src/resources"]
         }
     }
+    test {
+        java {
+            srcDirs = ["tests/java"]
+        }
+        resources {
+            srcDirs = ["tests/resources"]
+        }
+    }
+}
+
+test {
+    useJUnitPlatform()
 }
