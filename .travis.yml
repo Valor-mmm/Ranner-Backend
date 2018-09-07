@@ -1,7 +1,7 @@
 sudo: true
 language: java
 dist: trusty
-before_install:
+before_script:
 - chmod +x ./travis_run_sonarscanner.sh
 addons:
   sonarcloud:
