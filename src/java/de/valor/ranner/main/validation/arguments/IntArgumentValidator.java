@@ -21,6 +21,7 @@ public class IntArgumentValidator implements IArgumentValidator {
 
     @Override
     public void validateTypeStrict(Object target, String argumentName) {
+        throwNullError(target == null, argumentName);
         boolean validType = this.validateType(target, argumentName);
         this.throwTypeError(!validType, argumentName);
     }
@@ -44,6 +45,12 @@ public class IntArgumentValidator implements IArgumentValidator {
     @Override
     public void logValidationResult(boolean result, String argumentName) {
         logger.info(ArgumentLogStringGenerator.getValidateExistResult(result, argumentName));
+    }
+
+    private void throwNullError(boolean shouldThrow, String argumentName) {
+        if (shouldThrow) {
+            throw new IllegalArgumentException(ArgumentLogStringGenerator.getNullError(argumentName));
+        }
     }
 
     private void throwTypeError(boolean shouldThrow, String argumentName) {
