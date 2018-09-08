@@ -21,12 +21,15 @@ public class ConfigRetriever {
     private Properties properties = new Properties();
 
     public ConfigRetriever(String propertyPath) throws ConfigRetrieverException {
+        String errorMessage = "Error in ConfigRetriever constructor! Config could not be initialized.";
         try {
             stringArgumentValidator.validateExistsStrict(propertyPath, "propertyPath");
             this.propertyPath = propertyPath;
             this.init();
+        } catch (ConfigRetrieverException configRetEx) {
+            logger.error(errorMessage, configRetEx.getMessage());
+            throw configRetEx;
         } catch (Exception e) {
-            String errorMessage = "Error in ConfigRetriever constructor! Config could not be initialized";
             logger.error(errorMessage);
             throw new ConfigRetrieverException(errorMessage, e);
         }
@@ -41,14 +44,22 @@ public class ConfigRetriever {
         }
 
         InputStream input = configClassLoader.getResourceAsStream(this.propertyPath);
+        if (!notNullArgumentValidator.validateExists(input, "input")) {
+            throwFileHanldingError(null);
+        }
+
         try {
             properties.load(input);
             logger.info("Configuration loaded successfully form: " + this.getPropertyPath());
         } catch (IOException e) {
-            String errorMessage = "Error while loading config from file: " + this.getPropertyPath();
-            logger.error(errorMessage);
-            throw new ConfigRetrieverException(errorMessage, e);
+            this.throwFileHanldingError(e);
         }
+    }
+
+    private void throwFileHanldingError(Exception cause) throws ConfigRetrieverException {
+        String errorMessage = "Error while loading config from file: \"" + this.getPropertyPath() + "\"";
+        logger.error(errorMessage);
+        throw new ConfigRetrieverException(errorMessage, cause);
     }
 
     public String getProperty(String propertyName) {
