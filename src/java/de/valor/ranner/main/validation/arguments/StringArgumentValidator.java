@@ -21,6 +21,7 @@ public class StringArgumentValidator implements IArgumentValidator {
 
     @Override
     public void validateTypeStrict(Object target, String argumentName) {
+        isNullStrict(target, argumentName);
         if (!(target instanceof String)) {
             throw new IllegalArgumentException(ArgumentLogStringGenerator.getTypeError(type, argumentName));
         }
