@@ -7,6 +7,11 @@ import static org.junit.jupiter.api.Assertions.*;
 class ArgumentLogStringGeneratorTest {
 
     @Test
+    void createArgumentLogStringGenerator() {
+        new ArgumentLogStringGenerator();
+    }
+
+    @Test
     void getTypeError() {
         String expected = "Given argument is not of type: String";
         String actual = ArgumentLogStringGenerator.getTypeError("String", null);

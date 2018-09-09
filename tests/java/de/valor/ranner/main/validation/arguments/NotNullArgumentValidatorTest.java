@@ -11,6 +11,11 @@ class NotNullArgumentValidatorTest {
     private final IArgumentValidator NOT_NULL_VALIDATOR = new NotNullArgumentValidator();
 
     @Test
+    void createNotNullValidator() {
+        new NotNullArgumentValidator();
+    }
+
+    @Test
     void validateExistsTrue() {
         boolean actual = NOT_NULL_VALIDATOR.validateExists(new Object(), null);
         assertTrue(actual);

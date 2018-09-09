@@ -15,6 +15,11 @@ class IntArgumentValidatorTest {
     private static final String notExistsMessage = "The given argument is null or empty.";
 
     @Test
+    void createIntArgumentValidator() {
+        new IntArgumentValidator();
+    }
+
+    @Test
     void validateExistsInt() {
         boolean actual = intArgumentValidator.validateExists(4, null);
         assertTrue(actual);

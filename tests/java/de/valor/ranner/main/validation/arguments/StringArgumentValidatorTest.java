@@ -11,6 +11,11 @@ class StringArgumentValidatorTest {
     private final IArgumentValidator STRING_VALIDATOR = new StringArgumentValidator();
 
     @Test
+    void createStringArgumentValidator() {
+        new StringArgumentValidator();
+    }
+
+    @Test
     void validateExistsString() {
         boolean actual = STRING_VALIDATOR.validateExists("Some string", null);
         assertTrue(actual);
