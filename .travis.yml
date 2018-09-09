@@ -4,20 +4,27 @@ dist: trusty
 before_script:
 - npm install -g snyk
 - chmod +x ./travis_run_sonarscanner.sh
-addons:
-  sonarcloud:
-    organization: valor-mmm-github
-    token:
-      secure: "$SONAR_TOKEN"
+addons: 
+sonarcloud:
+  organization: valor-mmm-github
+  token:
+    secure: "$SONAR_TOKEN"
 jobs:
   include:
   - stage: test
-    script: ./gradlew clean test
-    name: "Gradle Tests"
-  - script: ./travis_run_sonarscanner.sh
-    name: "Sonar Scanner"
+    script: "./gradlew clean test"
+    name: Gradle Tests
+  - script: "./travis_run_sonarscanner.sh"
+    name: Sonar Scanner
   - script: snyk test
-    name: "Dependency Check"
+    name: Dependency Check
+  - stage: deploy
+    script: skip
+    deploy:
+      provider: heroku
+      api_key:
+        secure: jd26wRdyeuxG2B0nyqKbvV+iwLhVtYSpP4ahjbINMRW+gZW+nOE6BnsgmSynGYI2v4bgIF/jVxw7r7sHxhkO9AaWtQMONhRu5VKBpzWY4bDb+lK8cggRf5/ZsTwPAd1D6G3LUq0Mep7E+1sbHqJ9N0WfAkQUExNigWcujoBvSQtKnui5a6Sctiu2s7+jlw0Yj89ODn5mwnGZ9ZnMCnjjNJ5RL5SSjD1Vunw9IFdMasdAQ1UEXY7uhjmM4jzNqRiNwYLVIAQyuHYdn9CaJaqBTRjsfgDaYHYphSfeZasP0XTS5wdSp2ksZH/vFVMrkLihU4iEoKNh+ODU7Teu3bC3u2wdZV24lVzDZ0X+NbKs8auL6D8dmntLDEboZ8+6Od8UxRtSxt5v7DR0IS56oFEjQwRM//cCw/pjMhGIeM0xyVjVwif3aBH7k5DNqh79A2A+cz0RBYBludSYu5g1aDNzNElwDqjJX2JJlvnVU56Y4tiF97kRAIeExosEbPg4hziUe/FMfJb0pWdPqnVSgdRx1qjSWD0/d9cl8RBqIAy7zlfFHljgwpiR2/1ygtDmPh5k+Z/no68mXTzjhKK21eBPUu7wPNARgdsoM0/A16uIjO2C19yhambXVjmvlCcRs7iovJlAPNRMLB6Hdw8Ik8YtJGZSPyZ2sKAgdxKXX/dtQcM=
+
 env:
   global:
   - secure: SvOxNPdVhwDlTQrQsFcfpS690OJgic1Svsk/8pfop4FfelyW4LDWPNKisiU+3Tnks9x7ksvA9nl5xh6OIyLLX75+hxGxjoTAC81GkhnNC1jSrLpt1QO900ZZ6cPegBtW/krO80QTHh+y6M2GFO4M/NfckB09dlvHAEVeFpp1aUc2UnLX5es1nF+A7enHdr3gBFJkc6gQiBwtNC/CJEMVGRyPUhsUoZXSSjlbr9d5R7tzvpaVUsx42L5qppr6gLCjBZRsO1phYf1cypktwL508z45PPW2Vl0dfwJ2sYLqEMsTo/NQ7Q6ShkCF6NZto4ODV7Z1ixw6Va90UczXgADT3eUmWq4wAIH0hRcVCN9O2zzTwjCqgFQovJ3tOmeNKkdRwfoR7u+AJWtRUUliAUa3aMM/ztLntydZ/1ie41TSfQIKl3XKUhojbhWHQ5pXw51sDHTqnK7X+GwxmLT9VknCCsqrL6iT6c/tKFXrFQig4xYIiexkoftD778ZnuytqxW/hy+plauyQMdWSo5SkHJijVdN0/F6ikXS3Ml83v8aZNlZyvBwBDDzeC9UEa6aAgL0YpizDRq9CAvHuQbOCwgjmVM2pAQAfTVtS9akGbihNCqiPPLsV1AyG5O/bLODsWC+go80Gosm0qvADPmQQamuYvg/P0BDkxaQVeeN77bQiT0=
