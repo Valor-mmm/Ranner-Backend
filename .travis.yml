@@ -2,6 +2,7 @@ sudo: true
 language: java
 dist: trusty
 before_script:
+- npm install -g snyk
 - chmod +x ./travis_run_sonarscanner.sh
 addons:
   sonarcloud:
@@ -11,10 +12,13 @@ addons:
 jobs:
   include:
   - stage: test
-    name: "Gradle Tests"
     script: ./gradlew clean test
+    name: "Gradle Tests"
   - script: ./travis_run_sonarscanner.sh
     name: "Sonar Scanner"
+  - script: snyk test
+    name: "Dependency Check"
 env:
   global:
-    secure: SvOxNPdVhwDlTQrQsFcfpS690OJgic1Svsk/8pfop4FfelyW4LDWPNKisiU+3Tnks9x7ksvA9nl5xh6OIyLLX75+hxGxjoTAC81GkhnNC1jSrLpt1QO900ZZ6cPegBtW/krO80QTHh+y6M2GFO4M/NfckB09dlvHAEVeFpp1aUc2UnLX5es1nF+A7enHdr3gBFJkc6gQiBwtNC/CJEMVGRyPUhsUoZXSSjlbr9d5R7tzvpaVUsx42L5qppr6gLCjBZRsO1phYf1cypktwL508z45PPW2Vl0dfwJ2sYLqEMsTo/NQ7Q6ShkCF6NZto4ODV7Z1ixw6Va90UczXgADT3eUmWq4wAIH0hRcVCN9O2zzTwjCqgFQovJ3tOmeNKkdRwfoR7u+AJWtRUUliAUa3aMM/ztLntydZ/1ie41TSfQIKl3XKUhojbhWHQ5pXw51sDHTqnK7X+GwxmLT9VknCCsqrL6iT6c/tKFXrFQig4xYIiexkoftD778ZnuytqxW/hy+plauyQMdWSo5SkHJijVdN0/F6ikXS3Ml83v8aZNlZyvBwBDDzeC9UEa6aAgL0YpizDRq9CAvHuQbOCwgjmVM2pAQAfTVtS9akGbihNCqiPPLsV1AyG5O/bLODsWC+go80Gosm0qvADPmQQamuYvg/P0BDkxaQVeeN77bQiT0=
+  - secure: SvOxNPdVhwDlTQrQsFcfpS690OJgic1Svsk/8pfop4FfelyW4LDWPNKisiU+3Tnks9x7ksvA9nl5xh6OIyLLX75+hxGxjoTAC81GkhnNC1jSrLpt1QO900ZZ6cPegBtW/krO80QTHh+y6M2GFO4M/NfckB09dlvHAEVeFpp1aUc2UnLX5es1nF+A7enHdr3gBFJkc6gQiBwtNC/CJEMVGRyPUhsUoZXSSjlbr9d5R7tzvpaVUsx42L5qppr6gLCjBZRsO1phYf1cypktwL508z45PPW2Vl0dfwJ2sYLqEMsTo/NQ7Q6ShkCF6NZto4ODV7Z1ixw6Va90UczXgADT3eUmWq4wAIH0hRcVCN9O2zzTwjCqgFQovJ3tOmeNKkdRwfoR7u+AJWtRUUliAUa3aMM/ztLntydZ/1ie41TSfQIKl3XKUhojbhWHQ5pXw51sDHTqnK7X+GwxmLT9VknCCsqrL6iT6c/tKFXrFQig4xYIiexkoftD778ZnuytqxW/hy+plauyQMdWSo5SkHJijVdN0/F6ikXS3Ml83v8aZNlZyvBwBDDzeC9UEa6aAgL0YpizDRq9CAvHuQbOCwgjmVM2pAQAfTVtS9akGbihNCqiPPLsV1AyG5O/bLODsWC+go80Gosm0qvADPmQQamuYvg/P0BDkxaQVeeN77bQiT0=
+  - secure: ea+xydFjwMR93akxpr3qzQ88glhvwq1fqBdOO/b7zx7IhRqA7Nnlzh1PfrvKkkbh+xE35LowNBvDN4bRll+J9EA1ufRxiDb5E4Xo3o0yVoWT6kG1r/O1DFaC5rCIvQ5bZ8vhUZBcP8M1eUQ6wpWoY9eFNibQMioyqyC1KMqDZpcPjO1mHV50nmlyQWmvZC7pHycIt5yAisaoqXcG14uOxjI6qO9XdFApJS64FcfiyRsZYd0I/ZT1pQb70bI6+XQ7wTlhSd92ynJi3W7tpUF7Deg/iJMFscP4DXAhlk/4r/tN6hPGGS88PNyixAKMOrF+qJhdfrduPgoQhBl/wIOlTpuaOhz7n8AFusvwu3S+X0qz1H+pBxbyRJclSMLEw47ID/9lHnneYxn/+EJP/rvib0RIdd5aufBYzBw1YwVrrhujZSVG3rJKB4nBiw9gWzaf2kXBA/TinpgwA0jYIynQDOrvSwAq3l39TzTuUbIQ42iWyryzAD/s5YFPJ8E7pV9yJSkRdb79sSB+v+MxzUoa6WJ6w1sJjv8omq3P2aicGE9vzw9+B6UasPP9Pe1X1YzPLj8rfkZF5XhfEtz6FtS6r5Z38AG/Flp4Zln0/5Xm77LKA3CDvYZZhSoCH4Iq+L5U8tTiUHL2YASjSjU/Knrary1gvJc5EUq91lh0FFjWMFs=
