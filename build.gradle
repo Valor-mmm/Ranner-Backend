@@ -26,7 +26,7 @@ dependencyManagement {
 
 dependencies {
     implementation 'com.graphql-java:graphql-java:9.0'
-    implementation 'net.ravendb:ravendb:4.1.0'
+    implementation 'net.ravendb:ravendb:4.0.2'
     implementation group: 'org.apache.logging.log4j', name: 'log4j-api', version: '2.11.1'
     implementation group: 'org.apache.logging.log4j', name: 'log4j-core', version: '2.11.1'
     testImplementation(
@@ -62,8 +62,8 @@ test {
 
 jacocoTestReport {
     reports {
-        xml.enabled true
-        csv.enabled false
+        xml.enabled = true
+        csv.enabled = false
         html.destination file("${buildDir}/jacoco/jacocoHtml")
         xml.destination file("${buildDir}/jacoco/jacocoXml")
     }
