@@ -5,10 +5,10 @@ before_script:
 - npm install -g snyk
 - chmod +x ./travis_run_sonarscanner.sh
 addons: 
-sonarcloud:
-  organization: valor-mmm-github
-  token:
-    secure: "$SONAR_TOKEN"
+  sonarcloud:
+    organization: valor-mmm-github
+    token:
+      secure: "$SONAR_TOKEN"
 jobs:
   include:
   - stage: test
