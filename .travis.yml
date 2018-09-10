@@ -12,12 +12,12 @@ sonarcloud:
 jobs:
   include:
   - stage: test
-    script: "./gradlew clean test"
-    name: Gradle Tests
-  - script: "./travis_run_sonarscanner.sh"
-    name: Sonar Scanner
+    script: ./gradlew clean test
+    name: "Gradle Tests"
+  - script: ./travis_run_sonarscanner.sh
+    name: "Sonar Scanner"
   - script: snyk test
-    name: Dependency Check
+    name: "Dependency Check"
   - stage: deploy
     script: skip
     deploy:
