@@ -14,3 +14,7 @@ The current state of code will be available at [Sonarcloud](https://sonarcloud.i
 
 ## Dependency Analysis
 All dependencies will be analyzed using [Snyk](https://snyk.io/test/github/Valor-mmm/Ranner-Backend).
+
+## Monitoring
+### Log Monitoring
+All Logs are Monitored by [Sentry](https://sentry.io)
