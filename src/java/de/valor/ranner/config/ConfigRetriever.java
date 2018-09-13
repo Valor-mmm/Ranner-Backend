@@ -9,6 +9,7 @@ import org.apache.logging.log4j.Logger;
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.Properties;
+import java.util.Set;
 
 public class ConfigRetriever {
 
@@ -74,5 +75,9 @@ public class ConfigRetriever {
 
     public String getPropertyPath() {
         return propertyPath;
+    }
+
+    public Set<String> getPropertySet() {
+        return properties.stringPropertyNames();
     }
 }

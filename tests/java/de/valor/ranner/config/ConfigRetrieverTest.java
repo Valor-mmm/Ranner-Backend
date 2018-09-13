@@ -2,6 +2,9 @@ package de.valor.ranner.config;
 
 import org.junit.jupiter.api.Test;
 
+import java.util.HashSet;
+import java.util.Set;
+
 import static org.junit.jupiter.api.Assertions.*;
 
 class ConfigRetrieverTest {
@@ -108,5 +111,15 @@ class ConfigRetrieverTest {
         } catch (ConfigRetrieverException e) {
             throw new RuntimeException(e);
         }
+    }
+
+    @Test
+    void getPropertyList() throws ConfigRetrieverException {
+        ConfigRetriever configRetriever = new ConfigRetriever("configRetrieverTest.properties");
+        Set<String> expectedList = new HashSet<>();
+        expectedList.add("testProp");
+        expectedList.add("emptyProp");
+        expectedList.add("anotherProp");
+        assertEquals(expectedList, configRetriever.getPropertySet());
     }
 }
