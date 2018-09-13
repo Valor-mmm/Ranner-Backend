@@ -65,7 +65,7 @@ public class StringArgumentValidator implements IArgumentValidator {
 
     private boolean isNull (Object target, String argumentName) {
         boolean result = target == null;
-        if (!result) {
+        if (result) {
             String logMsg = ArgumentLogStringGenerator.getNullError(argumentName);
             logger.info(logMsg);
         }
