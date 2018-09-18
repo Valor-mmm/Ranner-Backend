@@ -29,7 +29,7 @@ dependencies {
     implementation 'com.graphql-java:graphql-java:9.0'
 
     /* Database: RavenDB */
-    implementation 'net.ravendb:ravendb:4.1.0'
+    implementation 'net.ravendb:ravendb:4.1.1'
 
     /* Logging */
     implementation 'io.sentry:sentry-log4j2:1.7.5'
