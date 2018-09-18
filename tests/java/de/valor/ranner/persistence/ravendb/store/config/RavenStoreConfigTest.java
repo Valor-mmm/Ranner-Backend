@@ -11,7 +11,7 @@ import static org.junit.jupiter.api.Assertions.*;
 
 class RavenStoreConfigTest {
 
-    private final String validConfig = "validRavenConfig.properties";
+    private final String validConfig = "persistence/ravendb/config/tests/validRavenConfig.properties";
     
     @Test
     void addUrlStringSingle() throws MalformedURLException, RavenConfigCreationException {
@@ -82,7 +82,7 @@ class RavenStoreConfigTest {
 
     @Test
     void getURLSetFilled() throws MalformedURLException, RavenConfigCreationException {
-        RavenStoreConfig config = RavenConfigFactory.createRavenConfig("validSingleURLRavenConfig.properties");
+        RavenStoreConfig config = RavenConfigFactory.createRavenConfig("persistence/ravendb/config/tests/validSingleURLRavenConfig.properties");
         String urlString = "http://aValidURLtoAdd.yes";
         URL validURL = new URL(urlString);
         String urlString2 = "http://singleNodeUrl.com";

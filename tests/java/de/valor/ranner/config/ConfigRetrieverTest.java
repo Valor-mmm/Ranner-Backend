@@ -12,7 +12,7 @@ class ConfigRetrieverTest {
     @Test
     void createConfigRetrieverValidPath() {
         try {
-            new ConfigRetriever("configRetrieverTest.properties");
+            new ConfigRetriever("persistence/ravendb/config/tests/configRetrieverTest.properties");
         } catch (ConfigRetrieverException e) {
             throw new RuntimeException(e);
         }
@@ -51,7 +51,7 @@ class ConfigRetrieverTest {
     void getPropertyValid() {
         String propertyValue = "someProperty 9394.3839 testEnd {/\\?";
         try {
-            ConfigRetriever configRetriever = new ConfigRetriever("configRetrieverTest.properties");
+            ConfigRetriever configRetriever = new ConfigRetriever("persistence/ravendb/config/tests/configRetrieverTest.properties");
             assertEquals(propertyValue, configRetriever.getProperty("testProp"));
         } catch (ConfigRetrieverException e) {
             throw new RuntimeException(e);
@@ -61,7 +61,7 @@ class ConfigRetrieverTest {
     @Test
     void getPropertyInvalid() {
         try {
-            ConfigRetriever configRetriever = new ConfigRetriever("configRetrieverTest.properties");
+            ConfigRetriever configRetriever = new ConfigRetriever("persistence/ravendb/config/tests/configRetrieverTest.properties");
             assertNull(configRetriever.getProperty("nonExistentProperty"));
         } catch (ConfigRetrieverException e) {
             throw new RuntimeException(e);
@@ -71,7 +71,7 @@ class ConfigRetrieverTest {
     @Test
     void getPropertyEmpty() {
         try {
-            ConfigRetriever configRetriever = new ConfigRetriever("configRetrieverTest.properties");
+            ConfigRetriever configRetriever = new ConfigRetriever("persistence/ravendb/config/tests/configRetrieverTest.properties");
             assertEquals("", configRetriever.getProperty("emptyProp"));
         } catch (ConfigRetrieverException e) {
             throw new RuntimeException(e);
@@ -81,7 +81,7 @@ class ConfigRetrieverTest {
     @Test
     void getPropertyParamNull() {
         try {
-            ConfigRetriever configRetriever = new ConfigRetriever("configRetrieverTest.properties");
+            ConfigRetriever configRetriever = new ConfigRetriever("persistence/ravendb/config/tests/configRetrieverTest.properties");
             assertThrows(IllegalArgumentException.class,
                     () -> configRetriever.getProperty(null)
             );
@@ -93,7 +93,7 @@ class ConfigRetrieverTest {
     @Test
     void getPropertyParamEmpty() {
         try {
-            ConfigRetriever configRetriever = new ConfigRetriever("configRetrieverTest.properties");
+            ConfigRetriever configRetriever = new ConfigRetriever("persistence/ravendb/config/tests/configRetrieverTest.properties");
             assertThrows(IllegalArgumentException.class,
                     () -> configRetriever.getProperty("")
             );
@@ -105,8 +105,8 @@ class ConfigRetrieverTest {
     @Test
     void getPropertyPath() {
         try {
-            String expectedPath = "configRetrieverTest.properties";
-            ConfigRetriever configRetriever = new ConfigRetriever("configRetrieverTest.properties");
+            String expectedPath = "persistence/ravendb/config/tests/configRetrieverTest.properties";
+            ConfigRetriever configRetriever = new ConfigRetriever("persistence/ravendb/config/tests/configRetrieverTest.properties");
             assertEquals(expectedPath, configRetriever.getPropertyPath());
         } catch (ConfigRetrieverException e) {
             throw new RuntimeException(e);
@@ -115,7 +115,7 @@ class ConfigRetrieverTest {
 
     @Test
     void getPropertyList() throws ConfigRetrieverException {
-        ConfigRetriever configRetriever = new ConfigRetriever("configRetrieverTest.properties");
+        ConfigRetriever configRetriever = new ConfigRetriever("persistence/ravendb/config/tests/configRetrieverTest.properties");
         Set<String> expectedList = new HashSet<>();
         expectedList.add("testProp");
         expectedList.add("emptyProp");

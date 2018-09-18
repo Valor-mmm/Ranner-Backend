@@ -11,7 +11,7 @@ import static org.junit.jupiter.api.Assertions.*;
 
 class RavenConfigFactoryTest {
 
-    private final String validConfigPath = "validRavenConfig.properties";
+    private final String validConfigPath = "persistence/ravendb/config/tests/validRavenConfig.properties";
 
     @Test
     void createRavenConfigFactory() {
@@ -44,7 +44,7 @@ class RavenConfigFactoryTest {
 
     @Test
     void checkValidConfigURL() throws MalformedURLException, RavenConfigCreationException {
-        RavenStoreConfig config = RavenConfigFactory.createRavenConfig("validSingleURLRavenConfig.properties");
+        RavenStoreConfig config = RavenConfigFactory.createRavenConfig("persistence/ravendb/config/tests/validSingleURLRavenConfig.properties");
         URL singleNodeURL = new URL("http://singleNodeUrl.com");
         Set<URL> urlSet = new HashSet<>();
         urlSet.add(singleNodeURL);
@@ -55,7 +55,7 @@ class RavenConfigFactoryTest {
     void checkInvalidConfigDbNameMissing() {
         String message = "Could not find a database name in the config.";
         RavenConfigCreationException actual = assertThrows(RavenConfigCreationException.class,
-                () -> RavenConfigFactory.createRavenConfig("invalidRavenConfigDbNameMissing.properties")
+                () -> RavenConfigFactory.createRavenConfig("persistence/ravendb/config/tests/invalidRavenConfigDbNameMissing.properties")
         );
         assertEquals(message, actual.getMessage());
     }
