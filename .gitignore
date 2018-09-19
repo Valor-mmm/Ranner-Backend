@@ -5,4 +5,5 @@ Ranner.iws
 .gradle
 gradlew.bat
 build
+out
 logs
