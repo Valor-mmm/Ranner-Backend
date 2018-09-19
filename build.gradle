@@ -47,6 +47,9 @@ dependencies {
      */
     implementation 'com.fasterxml.jackson.dataformat:jackson-dataformat-yaml:2.9.6'
 
+    /* Apache Commons Validator */
+    implementation group: 'commons-validator', name: 'commons-validator', version: '1.6'
+
 
     testImplementation(
             'org.junit.jupiter:junit-jupiter-api:5.1.0'
