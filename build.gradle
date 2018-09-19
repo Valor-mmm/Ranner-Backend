@@ -88,4 +88,10 @@ jacocoTestReport {
     }
 }
 
+task copyToLib(type: Copy) {
+    into "$buildDir/lib"
+    from(configurations.compile)
+}
+
+task stage(dependsOn: ['copyToLib', 'build'])
 
