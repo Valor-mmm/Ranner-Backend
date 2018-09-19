@@ -18,10 +18,11 @@ jobs:
     name: "Sonar Scanner"
   - script: snyk test
     name: "Dependency Check"
-  - stage: deploy
+  - stage: test deploy
     script: skip
     deploy:
       provider: heroku
+      app: ranner-backend-test
       api_key:
         secure: jd26wRdyeuxG2B0nyqKbvV+iwLhVtYSpP4ahjbINMRW+gZW+nOE6BnsgmSynGYI2v4bgIF/jVxw7r7sHxhkO9AaWtQMONhRu5VKBpzWY4bDb+lK8cggRf5/ZsTwPAd1D6G3LUq0Mep7E+1sbHqJ9N0WfAkQUExNigWcujoBvSQtKnui5a6Sctiu2s7+jlw0Yj89ODn5mwnGZ9ZnMCnjjNJ5RL5SSjD1Vunw9IFdMasdAQ1UEXY7uhjmM4jzNqRiNwYLVIAQyuHYdn9CaJaqBTRjsfgDaYHYphSfeZasP0XTS5wdSp2ksZH/vFVMrkLihU4iEoKNh+ODU7Teu3bC3u2wdZV24lVzDZ0X+NbKs8auL6D8dmntLDEboZ8+6Od8UxRtSxt5v7DR0IS56oFEjQwRM//cCw/pjMhGIeM0xyVjVwif3aBH7k5DNqh79A2A+cz0RBYBludSYu5g1aDNzNElwDqjJX2JJlvnVU56Y4tiF97kRAIeExosEbPg4hziUe/FMfJb0pWdPqnVSgdRx1qjSWD0/d9cl8RBqIAy7zlfFHljgwpiR2/1ygtDmPh5k+Z/no68mXTzjhKK21eBPUu7wPNARgdsoM0/A16uIjO2C19yhambXVjmvlCcRs7iovJlAPNRMLB6Hdw8Ik8YtJGZSPyZ2sKAgdxKXX/dtQcM=
 
