@@ -3,6 +3,8 @@ package de.valor.ranner.persistence.model.user;
 import de.valor.ranner.persistence.model.privileges.Privilege;
 import org.junit.jupiter.api.Test;
 
+import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -89,5 +91,85 @@ class AbstractUserGetterSetterTest {
     void setLastNameNull() {
         AbstractUser abstractUser = new Admin();
         abstractUser.setLastName(null);
+    }
+
+    @Test
+    void getBirthday() {
+        LocalDateTime localDateTime = LocalDateTime.now();
+        AbstractUser abstractUser = new Trainer();
+        abstractUser.setBirthday(localDateTime);
+        assertEquals(localDateTime, abstractUser.getBirthday());
+    }
+
+    @Test
+    void getBirthdayNull() {
+        AbstractUser abstractUser = new Admin();
+        abstractUser.setBirthday(null);
+        assertNull(abstractUser.getBirthday());
+    }
+
+    @Test
+    void setBirthdayMax() {
+        AbstractUser abstractUser = new Athlete();
+        abstractUser.setBirthday(LocalDateTime.MAX);
+    }
+
+    @Test
+    void setBirthdayMin() {
+        AbstractUser abstractUser = new Trainer();
+        abstractUser.setBirthday(LocalDateTime.MIN);
+    }
+
+    @Test
+    void setBirthdayNull() {
+        AbstractUser abstractUser = new Athlete();
+        abstractUser.setBirthday(null);
+    }
+
+    @Test
+    void getEmail() {
+        String someEmail = "thisMail@isValid.at";
+        AbstractUser abstractUser = new Trainer();
+        abstractUser.setEmail(someEmail);
+        assertEquals(someEmail, abstractUser.getEmail());
+
+    }
+
+    @Test
+    void getEmailInitial() {
+        AbstractUser abstractUser = new Admin();
+        assertNull(abstractUser.getEmail());
+    }
+
+    @Test
+    void setEmailValid() {
+        AbstractUser abstractUser = new Athlete();
+        abstractUser.setEmail("a@valid-mail.com");
+    }
+
+    @Test
+    void setEmailNull() {
+        AbstractUser abstractUser = new Trainer();
+        assertThrows(IllegalArgumentException.class,
+                () -> abstractUser.setEmail(null)
+        );
+    }
+
+    @Test
+    void setEmailInvalidShort() {
+        AbstractUser abstractUser = new Athlete();
+        assertThrows(IllegalArgumentException.class, () -> abstractUser.setEmail("not@valid."));
+    }
+
+    @Test
+    void setEmailInvalidMissingAt() {
+        AbstractUser abstractUser = new Admin();
+        assertThrows(IllegalArgumentException.class, () -> abstractUser.setEmail("invalidMail.com"));
+    }
+
+    @Test
+    void setEmailInvalidWrongDomain() {
+        AbstractUser abstractUser = new Athlete();
+        assertThrows(IllegalArgumentException.class, () -> abstractUser.setEmail("invalid@domain.qwertzuiop"));
     }
 }

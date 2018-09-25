@@ -6,8 +6,7 @@ import org.junit.jupiter.api.Test;
 import java.util.ArrayList;
 import java.util.List;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertNull;
+import static org.junit.jupiter.api.Assertions.*;
 
 class AdminGetterSetterTest {
 
@@ -95,5 +94,52 @@ class AdminGetterSetterTest {
     void setLastNameNull() {
         AbstractUser abstractUser = new Admin();
         abstractUser.setLastName(null);
+    }
+
+    @Test
+    void getEmail() {
+        String someEmail = "af-as@valid.org";
+        Admin admin = new Admin();
+        admin.setEmail(someEmail);
+        assertEquals(someEmail, admin.getEmail());
+
+    }
+
+    @Test
+    void getEmailInitial() {
+        Admin admin = new Admin();
+        assertNull(admin.getEmail());
+    }
+
+    @Test
+    void setEmailValid() {
+        Admin admin = new Admin();
+        admin.setEmail("some@valid-mail.nl");
+    }
+
+    @Test
+    void setEmailNull() {
+        Admin admin = new Admin();
+        assertThrows(IllegalArgumentException.class,
+                () -> admin.setEmail(null)
+        );
+    }
+
+    @Test
+    void setEmailInvalidShort() {
+        Admin admin = new Admin();
+        assertThrows(IllegalArgumentException.class, () -> admin.setEmail("not@.de"));
+    }
+
+    @Test
+    void setEmailInvalidMissingAt() {
+        Admin admin = new Admin();
+        assertThrows(IllegalArgumentException.class, () -> admin.setEmail("missingAt.it"));
+    }
+
+    @Test
+    void setEmailInvalidWrongDomain() {
+        Admin admin = new Admin();
+        assertThrows(IllegalArgumentException.class, () -> admin.setEmail("no@dom.teaölsdkfj"));
     }
 }

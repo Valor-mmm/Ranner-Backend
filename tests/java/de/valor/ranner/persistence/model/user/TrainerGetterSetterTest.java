@@ -6,8 +6,7 @@ import org.junit.jupiter.api.Test;
 import java.util.ArrayList;
 import java.util.List;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertNull;
+import static org.junit.jupiter.api.Assertions.*;
 
 class TrainerGetterSetterTest {
 
@@ -95,6 +94,53 @@ class TrainerGetterSetterTest {
     void setLastNameNull() {
         AbstractUser abstractUser = new Trainer();
         abstractUser.setLastName(null);
+    }
+
+    @Test
+    void getEmail() {
+        String someEmail = "this@validMail.gr";
+        Trainer trainer = new Trainer();
+        trainer.setEmail(someEmail);
+        assertEquals(someEmail, trainer.getEmail());
+
+    }
+
+    @Test
+    void getEmailInitial() {
+        Trainer trainer = new Trainer();
+        assertNull(trainer.getEmail());
+    }
+
+    @Test
+    void setEmailValid() {
+        Trainer trainer = new Trainer();
+        trainer.setEmail("some@mail.us");
+    }
+
+    @Test
+    void setEmailNull() {
+        Trainer trainer = new Trainer();
+        assertThrows(IllegalArgumentException.class,
+                () -> trainer.setEmail(null)
+        );
+    }
+
+    @Test
+    void setEmailInvalidShort() {
+        Trainer trainer = new Trainer();
+        assertThrows(IllegalArgumentException.class, () -> trainer.setEmail("really@Not@valid.com"));
+    }
+
+    @Test
+    void setEmailInvalidMissingAt() {
+        Trainer trainer = new Trainer();
+        assertThrows(IllegalArgumentException.class, () -> trainer.setEmail("inv alid@Mail.com"));
+    }
+
+    @Test
+    void setEmailInvalidWrongDomain() {
+        Trainer trainer = new Trainer();
+        assertThrows(IllegalArgumentException.class, () -> trainer.setEmail("invalid@do-main.if"));
     }
 
 }
