@@ -1,19 +1,22 @@
 package de.valor.ranner.main.validation.arguments;
 
+import org.apache.commons.validator.routines.EmailValidator;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
-public class IntArgumentValidator implements IArgumentValidator {
+public class EmailArgumentValidator implements IArgumentValidator {
 
-    private static final String type = "Integer";
+    public static final Logger logger = LogManager.getLogger(EmailArgumentValidator.class);
 
-    private static final Logger logger = LogManager.getLogger(IntArgumentValidator.class);
+    private static final String TYPE = "String";
+
+    private static final EmailValidator emailValidator = EmailValidator.getInstance();
 
     @Override
     public boolean validateType(Object target, String argumentName) {
-        boolean result = target instanceof Integer;
+        boolean result = target instanceof String;
         if (!result) {
-            String logMsg = ArgumentLogStringGenerator.getTypeError(type, argumentName);
+            String logMsg = ArgumentLogStringGenerator.getTypeError(TYPE, argumentName);
             logger.info(logMsg);
         }
         return result;
@@ -32,14 +35,24 @@ public class IntArgumentValidator implements IArgumentValidator {
         if (!result) {
             String msg = ArgumentLogStringGenerator.getNullError(argumentName);
             logger.info(msg);
+            return false;
         }
+
+        if (!validateType(target, argumentName)) {
+            return false;
+        }
+
+        String emailString = (String) target;
+        result = emailValidator.isValid(emailString);
         return result;
     }
 
     @Override
     public void checkExistsStrict(Object target, String argumentName) {
-        boolean doesExist = this.checkExists(target, argumentName);
-        this.throwNotExistsError(!doesExist, argumentName);
+        throwNullError(target == null, argumentName);
+        validateTypeStrict(target, argumentName);
+        String emailString = (String) target;
+        throwNotExistsError(!emailValidator.isValid(emailString), argumentName);
     }
 
     @Override
@@ -55,7 +68,7 @@ public class IntArgumentValidator implements IArgumentValidator {
 
     private void throwTypeError(boolean shouldThrow, String argumentName) {
         if (shouldThrow) {
-            throw new IllegalArgumentException(ArgumentLogStringGenerator.getTypeError(type, argumentName));
+            throw new IllegalArgumentException(ArgumentLogStringGenerator.getTypeError(TYPE, argumentName));
         }
     }
 
@@ -64,5 +77,4 @@ public class IntArgumentValidator implements IArgumentValidator {
             throw new IllegalArgumentException(ArgumentLogStringGenerator.getNotExistsError(argumentName));
         }
     }
-
 }
